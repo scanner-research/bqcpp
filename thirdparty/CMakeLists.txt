@@ -1,0 +1,40 @@
+cmake_minimum_required(VERSION 3.2.0 FATAL_ERROR)
+
+project(BQCppThirdparty)
+
+include(ExternalProject)
+
+set(GLOBAL_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+set(THIRDPARTY_SOURCE_DIR "${CMAKE_SOURCE_DIR}")
+
+ExternalProject_Add(Pistache
+  GIT_REPOSITORY "https://github.com/oktal/pistache"
+  GIT_TAG ca1e564ec2b38fd73ed4212bcc57cb889aba4538
+
+  UPDATE_COMMAND ""
+
+  SOURCE_DIR "${THIRDPARTY_SOURCE_DIR}/pistache"
+
+  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${GLOBAL_OUTPUT_PATH}/pistache
+  -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
+  -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
+
+  INSTALL_DIR "${GLOBAL_OUTPUT_PATH}/pistache"
+  )
+
+
+# googletest
+ExternalProject_Add(GoogleTest
+  GIT_REPOSITORY "https://github.com/google/googletest"
+  GIT_TAG 0a439623f75c029912728d80cb7f1b8b48739ca4
+
+  UPDATE_COMMAND ""
+
+  SOURCE_DIR "${THIRDPARTY_SOURCE_DIR}/googletest"
+
+  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${GLOBAL_OUTPUT_PATH}/googletest
+  -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
+  -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
+
+  INSTALL_DIR "${GLOBAL_OUTPUT_PATH}/googletest"
+  )

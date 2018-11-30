@@ -1,0 +1,10 @@
+set(BQCPP_INCLUDE_DIRS
+  @CMAKE_INSTALL_PREFIX@/include
+  @PUBLIC_INCLUDE_DIRECTORIES@)
+
+# Compute paths
+get_filename_component(BQCPP_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include("${BQCPP_CMAKE_DIR}/BQCppTarget.cmake")
+
+# These are IMPORTED targets created by FooBarTargets.cmake
+set(BQCPP_LIBRARIES storehouse)
